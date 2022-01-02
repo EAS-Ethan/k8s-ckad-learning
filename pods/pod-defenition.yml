@@ -1,0 +1,15 @@
+# A pod deploys a single instance 
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx

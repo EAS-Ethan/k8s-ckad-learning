@@ -1,0 +1,11 @@
+# A config map is used to add env values to a pod
+apiVersion: v1
+
+kind: ConfigMap
+
+metadata:
+  name: app-config
+
+data:
+  APP_COLOR: blue
+  APP_MODE: prod

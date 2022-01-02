@@ -1,0 +1,14 @@
+# This pod is configured to use a local image from the dockerfile
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: ubuntu-sleeper
+
+spec:
+  containers:
+    - name: ubuntu-sleeper
+      image: ubuntu-sleeper 
+      command: ["sleep2.0"] #overwrites ENTRYPOINT field in dockerfile
+      args: ["10"] # overwrites CMD field in dockerfile

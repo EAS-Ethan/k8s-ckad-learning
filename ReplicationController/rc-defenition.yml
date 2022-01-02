@@ -1,0 +1,26 @@
+# A replica controller replicates a chosen pod as many times as your replica key is set
+apiVersion: v1
+
+kind: ReplicationController
+
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:
+  # ------- POD ---------
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  # ------- POD ---------
+  replicas: 3
+

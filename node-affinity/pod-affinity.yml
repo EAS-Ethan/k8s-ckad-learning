@@ -1,0 +1,49 @@
+# Example of pods using node affinity, node affinity tells pods 
+#what nodes they can and cannot go onto.
+
+# This pod can go onto a large or medium node
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: In
+            values:
+            - Large
+            - Medium
+
+---
+
+# This pod can not go onto a small node
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: NotIn
+            values:
+            - Small

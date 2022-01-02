@@ -1,0 +1,15 @@
+# Example of pod with a node selector, a node selector tells the pod
+# what size node it should join.
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  nodeSelector:
+    size: Large

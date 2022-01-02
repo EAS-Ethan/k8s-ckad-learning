@@ -1,0 +1,18 @@
+# Example of a pod with tolerence , taint and tolerence is used
+# to let the pods know what nodes they can join.
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  tolerations:
+  - key: "app" 
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
