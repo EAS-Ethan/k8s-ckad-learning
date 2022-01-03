@@ -1,0 +1,37 @@
+# A service allows a user to talk to a pod when not on same network, this
+# is attched to pods woth the same label under 'selector' key
+
+# this service uses a nodeport
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: myapp-service
+
+spec:
+  type: NodePort
+  ports:
+  - targetPort: 80 # port for pod
+    port: 80 # port for service
+    nodePort: 30008 # port for node
+  selector: 
+    apple: red # label from pod in directory /pods/pod-defenition.yml
+
+---
+
+# this service uses a cluster ip
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: back-end
+
+spec:
+  type: ClusterIP
+  ports:
+  - targetPort: 80 # port for pod
+    port: 80 # port for service
+  selector: 
+    apple: red # label from pod in directory /pods/pod-defenition.yml

@@ -5,7 +5,7 @@ kind: ResourceQuota
 
 metadata:
   name: compute-quota
-  namespace: dev
+  namespace: dev # Will be within the namespace dev
 
 spec:
   hard:

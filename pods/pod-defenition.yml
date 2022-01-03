@@ -5,6 +5,8 @@ kind: Pod
 
 metadata:
   name: myapp-pod
+  labels:
+    apple: red
 
 spec:
   containers:

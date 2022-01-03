@@ -8,7 +8,7 @@ metadata:
 
 spec:
   selector:
-    app: App1
+    app: App1 
   ports:
     - protocol: TCP
       port: 80

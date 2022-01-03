@@ -5,9 +5,6 @@ kind: Pod
 
 metadata:
   name: myapp-pod
-  namespace: dev
-  labels:
-    app: myapp
 
 spec:
   containers:
@@ -15,5 +12,5 @@ spec:
       image: nginx
       envFrom:
       - configMapRef:
-          name: app-config
+          name: app-config # this will grab the lables from the config map named app-config
     

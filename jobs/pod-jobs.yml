@@ -1,4 +1,6 @@
-# A pod using a command and a restart policy
+# A pod using a command and a restart policy, a restart policy is used
+# to tell the pod wether it can restart when done, not to restart or restart
+# on failure.
 apiVersion: v1
 
 kind: Pod

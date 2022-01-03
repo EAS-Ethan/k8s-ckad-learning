@@ -22,7 +22,7 @@ spec:
         - name: nginx-container
           image: nginx
   # ------- POD ---------
-  replicas: 6
+  replicas: 6 # Will duplicate the pod as many times as you have put
   selector: # the selector only selects pods that matches the 'matchLabels' label
     matchLabels:
       type: front-end

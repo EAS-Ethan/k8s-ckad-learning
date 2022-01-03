@@ -11,7 +11,12 @@ metadata:
 
 spec:
   containers:
+  # ------- container 1 ---------
     - name: nginx-container
       image: nginx
+  # ------- container 1 ---------
+
+  # ------- container 2 ---------
     - name: log-agent-container
       image: log-agent
+  # ------- container 2 ---------

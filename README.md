@@ -96,7 +96,11 @@ get cron jobs: ``` kubectl get cronjob ```
 
 delete cron job: ``` kubectl delete cronjob [CRON_JOB_NAME] ```
 
+# Services
 
+get services: ``` kubectl get services ```
+
+delete service: ``` kubectl delete service [SERVICE_NAME] ```
 
 # Service accounts
 
