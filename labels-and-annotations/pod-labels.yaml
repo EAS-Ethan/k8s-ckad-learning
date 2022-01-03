@@ -1,10 +1,13 @@
-# A pod deploys a single instance
+# A pod using labels
 apiVersion: v1
 
 kind: Pod
 
 metadata:
   name: myapp-pod
+  labels:
+    app: App1
+    function: Front-end
 
 spec:
   containers:

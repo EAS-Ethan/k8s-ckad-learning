@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+
+kind: CronJob
+
+metadata:
+  name: reporting-cron-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      containers:
+      - name: math-pod
+        image: ubuntu
+        command: ['expr', '3', '+', '2']
+      restartPolicy: Never

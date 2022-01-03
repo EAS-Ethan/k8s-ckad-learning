@@ -1,0 +1,29 @@
+# A deployment when created will create a deployment and replica set , a
+# deployent acts very similar to a replicaset, almost similar
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:
+  # ------- POD ---------
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.7.1
+  # ------- POD ---------
+  replicas: 6
+  selector: # the selector only selects pods that matches the 'matchLabels' label
+    matchLabels:
+      type: front-end

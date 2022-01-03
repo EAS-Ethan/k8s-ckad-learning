@@ -16,6 +16,8 @@ describe pods: ``` kubectl describe pod ```
 
 describe a pod ``` kubectl describe pod [POD_NAME] ```
 
+get pods by label: ``` kubectl get pods --selector [KEY]=[VALUE] ```
+
 # ReplicaControllers & ReplicaSets
 
 list replication controllers: ``` kubectl get replicationcontroller ```
@@ -39,6 +41,10 @@ get deployments: ``` kubectl get deployments ```
 delete deployment: ``` kubectl delete deployment [DEPLOYMENT_NAME] ```
 
 create deployment: ``` kubectl create deployment [NAME] --image=[IMAGE] --replicas=[NUMBER] ```
+
+update deployment: ```kubectl apply -f [YAML_FILE_PATH] ```
+
+update image in deployment: ```kubectl set image [RESOURCE_TYPE] [RESOURCE_NAME] \ [EXISTING_IMAGE]=[NEW_IMAGE ```]
 
 # Namespaces
 
@@ -76,6 +82,21 @@ turn words into hashed unreadbale code: ``` echo -n "[WORD]" | base64 ```
 
 decode hashed unreadble codes to be readable: ``` echo -n "[ENCODED_WORD]" | base64 --decode ```
 
+# Jobs 
+
+get jobs: ``` kubectl get jobs ```
+
+get logs of job: ```kubectl logs [POD_NAME] ```
+
+delete job: ``` kubectl delete job [JOB_NAME] ```
+
+# Cron Jobs 
+
+get cron jobs: ``` kubectl get cronjob ```
+
+delete cron job: ``` kubectl delete cronjob [CRON_JOB_NAME] ```
+
+
 
 # Service accounts
 
@@ -88,6 +109,24 @@ describe service account: ``` kubectl describe serviceaccount [SERVICE_ACCOUNT_N
 taint nodes: ```kubectl taint nodes [NODE_NAME] spray=mortein:NoSchedule ```
 
 untaint nodes: ```kubectl taint nodes [NODE_NAME] spray=mortein:NoSchedule- ```
+
+# Monitor and debug
+
+enable metric server on minikube: ``` minikube addons enable metrics-server ```
+
+clone metric server repo for metric server: ``` git clone https://github.com/kubernetes-sigs/metrics-server.git ```
+
+view node cpu% and memory%: ``` kubectl get top node ```
+
+view pod cpu% and memory%: ``` kubectl get top pod ```
+
+# Rollout
+
+view rollout resource : ```kubectl rollout status [RESOURCE_TYPE] [RESOURCE_NAME] ```
+
+view rollout resource history: ```kubectl rollout history [RESOURCE_TYPE] [RESOURCE_NAME] ```
+
+undo a rollout: ```kubectl rollout undo [RESOURCE_TYPE] [RESOURCE_NAME] ```
 
 # Viewing logs
 
@@ -111,6 +150,8 @@ run image in background: ``` docker run -d [IMAGE] ```
 
 build docker image: ``` docker build -f [IMAGE] ```
 
+run math equation: ``` kubectl run ubuntu expr 3 + 2 ```
+
 # Nodes
 
 label nodes: ``` kubectl label nodes [NODE_NAME] size=[MEDIUM_OR_LARGE] ```
@@ -124,4 +165,6 @@ get all: ``` kubectl get all ```
 -o flag example with json: ``` kubectl create namespace [NAME] --dry-run -o json ``` 
 
 define security standards in docker: ``` docker run --user=[NUMBER] [IMAGE]```
+
+update image in resource: ```kubectl set image [RESOURCE_TYPE] [RESOURCE_NAME] \ [EXISTING_IMAGE]=[NEW_IMAGE ```]
 

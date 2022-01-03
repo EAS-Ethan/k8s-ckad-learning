@@ -1,0 +1,28 @@
+# Example of replica set using labels and annotations
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+  name: simple-webapp
+  labels:
+    app: App1
+    type: Front-end
+  annotations:
+    buildversion: 1.34
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: App1  
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: App1
+        function: Front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  
