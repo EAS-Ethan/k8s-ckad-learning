@@ -1,0 +1,70 @@
+# A readiness probe will wait for the pod to be ready before anyone
+# can access it
+
+# Pod with http readiness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      readinessProbe:
+        httpGet:
+          path: /api/ready
+          port: 8080
+        initialDelay: 10
+        periodSeconds: 5
+        failureThreshold: 8
+
+---
+
+# Pod with tcp readiness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      readinessProbe:
+        tcpSocket:
+          port: 3306
+
+---
+
+# Pod with command readiness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      readinessProbe:
+        exec:
+          command:
+            - cat 
+            - /app/is_re
+

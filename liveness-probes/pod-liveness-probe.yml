@@ -1,0 +1,68 @@
+# A liveness probe will continusly check the health of a pod
+
+# Pod with http liveness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      livenessProbe:
+        httpGet:
+          path: /api/healthy
+          port: 8080
+        initialDelay: 10
+        periodSeconds: 5
+        failureThreshold: 8
+---
+
+# Pod with tcp liveness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      livenessProbe:
+        tcpSocket:
+          port: 3306
+
+---
+
+# Pod with command liveness probe
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  namespace: dev
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      livenessProbe:
+        exec:
+          command:
+            - cat 
+            - /app/is_healthy
+

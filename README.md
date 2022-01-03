@@ -1,126 +1,127 @@
-g # k8s-ckad-learning commands
+# k8s-ckad-learning commands
+
+``` kubectl create -f [YAML_FILE_PATH] ```
 
 # Pods
 
-``` kubectl create -f pods/pod-defenition.yml ```
-
 view pods: ``` kubectl get pods ```
 
-extect pod into file: ``` kubectl get pod <pod-name> -o yaml > pod-definition.yaml ```
+extect pod into file: ``` kubectl get pod [POD_NAME] -o yaml > [YAML_FILE_PATH] ```
 
-edit pod: ``` kubectl edit pod <pod-name> ```
+edit pod: ``` kubectl edit pod [POD_NAME] ```
 
-delete pod: ``` kubectl delete pod my-pod ```
+delete pod: ``` kubectl delete pod [POD_NAME] ```
+
+describe pods: ``` kubectl describe pod ```
+
+describe a pod ``` kubectl describe pod [POD_NAME] ```
 
 # ReplicaControllers & ReplicaSets
-
-replica controller: ``` kubectl create -f ReplicationController/rc-defenition.yml ```
-
-replica set: ``` kubectl create -f replicaset/replicaset-defenition.yml ```
 
 list replication controllers: ``` kubectl get replicationcontroller ```
 
 list replica sets: ``` kubectl get replicaset ```
 
-updated replicas command to replace replica set : ``` kubectl replace -f replicaset-defenition.yml  ```
+updated replicas command to replace replica set : ``` kubectl replace -f [YAML_FILE_PATH]  ```
 
-scale replicas in replicaset with file : ``` kubectl scale --replicas=7 replicaset-defenition.yml ```
+scale replicas in replicaset with file : ``` kubectl scale --replicas=[NUMBER] [YAML_FILE_PATH] ```
 
-scale replicas in replicaset with replicaset namew : ``` kubectl scale --replicas=7 replicaset myapp-replicaset ```
+scale replicas in replicaset with replicaset namew : ``` kubectl scale --replicas=[NUMBER] replicaset [REPLICASET_NAME] ```
 
-delete replica set: ``` kubectl delete replicaset myapp-replicaset ```
+delete replica set: ``` kubectl delete replicaset [REPLICASET_NAME] ```
 
-delete replication controller: ``` kubectl delete replicationcontroller myapp-rc ```
+delete replication controller: ``` kubectl delete replicationcontroller [REPLICASET_NAME] ```
 
 # Deployments
 
-``` kubectl create -f deployment/deployment-defenition.yml ```
-
 get deployments: ``` kubectl get deployments ```
 
-delete deployment: ``` kubectl delete deployment my-deployment ```
+delete deployment: ``` kubectl delete deployment [DEPLOYMENT_NAME] ```
 
-create deployment: ``` kubectl create deployment blue --image=nginx --replicas=3 ```
+create deployment: ``` kubectl create deployment [NAME] --image=[IMAGE] --replicas=[NUMBER] ```
 
 # Namespaces
 
-``` kubectl create -f namespace/namespace-dev.yml ```
+delete namespace: ``` kubectl delete namespace [NAMESPACE_NAME] ```
 
-delete namespace: ``` kubectl delete namespace test ```
+create namespace: ``` kubectl create namespace [NAME] ```
 
-create namespace: ``` kubectl create namespace dev ```
-
-get in namspace pod example: ``` kubctl get pods --namespace dev ```
+get in namspace pod example: ``` kubctl get pods --namespace [NAMESPACE_NAME] ```
 
 view pods in all namespaces example: ``` kubectl get pods --all-namespaces ```
 
-chnage current context for namespace view: ``` kubectl config set-context $(kubectl config current-context) --namespace dev ```
+chnage current context for namespace view: ``` kubectl config set-context $(kubectl config current-context) --namespace [NAMESPACE_NAME] ```
 
 # Configmaps
-
-``` kubectl create -f config-maps/config-map.yml ```
 
 view config maps: ``` kubectl get configmap ```
 
 descibe config maps: ``` kubectl describe configmap ```
 
-delete config map: ``` kubectl delete configmap config-map ```
+delete config map: ``` kubectl delete configmap [CONFIGMAP_NAME] ```
 
 # Secrets
-
-``` kubectl create -f secrets/secret-data.yml ```
 
 view secrets: ``` kubectl get secrets ```
 
 describe secrets: ``` kubectl describe secrets ```
 
-describe a secret: ``` kubectl describe secret dashboard-sa-token-m7s2w ```
+describe a secret: ``` kubectl describe secret [SECRET_NAME] ```
 
-view secret in yaml format: ``` kubectl get secret app-secret -o yaml ```
+view secret in yaml format: ``` kubectl get secret [SECRET_NAME] -o yaml ```
 
-creat secret without file: ``` kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123 ```
+creat secret without file: ``` kubectl create secret generic [NAME] --from-literal=[KEY]=[VALUE] --from-literal=[KEY]=[VALUE] --from-literal=[KEY]=[VALUE] ```
+
+turn words into hashed unreadbale code: ``` echo -n "[WORD]" | base64 ```
+
+decode hashed unreadble codes to be readable: ``` echo -n "[ENCODED_WORD]" | base64 --decode ```
+
 
 # Service accounts
 
-create service account: ``` kubectl create serviceccount dashboard-sa ```
-
 view service accounts: ``` kubectl get serviceaccounts ```
 
-describe service account: ``` kubectl describe serviceaccount dashboard-sa ```
+describe service account: ``` kubectl describe serviceaccount [SERVICE_ACCOUNT_NAME] ```
 
 # Taint and tolerance
 
-taint nodes: ```kubectl taint nodes node01 spray=mortein:NoSchedule ```
+taint nodes: ```kubectl taint nodes [NODE_NAME] spray=mortein:NoSchedule ```
 
-untaint nodes: ```kubectl taint nodes node01 spray=mortein:NoSchedule- ```
+untaint nodes: ```kubectl taint nodes [NODE_NAME] spray=mortein:NoSchedule- ```
+
+# Viewing logs
+
+view logs of pod: ``` kubectl logs -f [POD_NAME] ```
+
+view logs of pod specifying a container: ``` kubectl logs -f [POD_NAME] [CONTAINER_NAME] ```
 
 # Docker commands
 
-run a docker container: ``` docker run ubuntu ```
+run a docker container: ``` docker run [IMAGE] ```
 
 view containers running in docker desktop: ``` docker ps ```
 
 view recently exited conatiners in docker desktop:  ``` docker ps -a ```
 
-add command to docker run command example: ``` docker run ubuntu sleep 5 ```
+add command to docker run command example: ``` docker run [IMAGE] sleep 5 ```
 
-build docker image: ``` docker build -f [NAME] ```
+view docker logs: ``` docker logs -f [NAME] ```
+
+run image in background: ``` docker run -d [IMAGE] ```
+
+build docker image: ``` docker build -f [IMAGE] ```
 
 # Nodes
 
-label nodes: ``` kubectl label nodes node-1 size=large ```
+label nodes: ``` kubectl label nodes [NODE_NAME] size=[MEDIUM_OR_LARGE] ```
 
 # Other used commands
 
 get all: ``` kubectl get all ```
 
--o flag example with yaml: ``` kubectl create namespace test-123 --dry-run -o yaml ``` 
+-o flag example with yaml: ``` kubectl create namespace [NAME] --dry-run -o yaml ``` 
 
--o flag example with json: ``` kubectl create namespace test-123 --dry-run -o json ``` 
+-o flag example with json: ``` kubectl create namespace [NAME] --dry-run -o json ``` 
 
-turn words into hashed unreadbale code: ``` echo -n "password" | base64 ```
-
-decode hashed unreadble codes to be readable: ``` echo -n "cGFzc3dvcmQ=" | base64 --decode ```
-
-define security standards in docker: ``` docker run --user=1001 ubuntu sleep 1000 ```
+define security standards in docker: ``` docker run --user=[NUMBER] [IMAGE]```
 
