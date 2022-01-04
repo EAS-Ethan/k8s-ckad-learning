@@ -104,7 +104,11 @@ delete service: ``` kubectl delete service [SERVICE_NAME] ```
 
 # Ingress
 
+get ingresses: ``` kubectl get ingress ```
 
+describe ingress: ``` kubectl describe ingress [INGRESS_NAME] ```
+
+delete ingress: ``` kubectl delete ingress [INGRESS_NAME] ```
 
 # Service accounts
 
